@@ -31,21 +31,3 @@ export const deleteToDo = (id) => {
         payload: id,
     };
 };
-
-export const filterDone = () => {
-    return {
-        type: 'FILTER_DONE'
-    }
-}
-
-export const filterAll = () => {
-    return {
-        type: 'FILTER_ALL'
-    }
-}
-
-export const filterUndone = () => {
-    return {
-        type: 'FILTER_UNDONE'
-    }
-}

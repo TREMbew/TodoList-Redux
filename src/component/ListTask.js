@@ -4,9 +4,11 @@ import Task from './Task';
 
 const ListTask = ({todoList}) => {
     return (
-        <div>
-            {todoList.map(task => 
-                <Task task={task} key={task.id}/>)}
+        <div className="todo_container">
+            <div className="todo_list">
+                {todoList.map(task => 
+                    <Task task={task} key={task.id}/>)}
+            </div>
         </div>
     )
 }

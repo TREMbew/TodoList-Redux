@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
-import { v4 as uuidv4 } from 'uuid';
+//import { v4 as uuidv4 } from 'uuid';
 
 let initialState = [
-    {id : uuidv4(),
-    description : 'Learn JS',
+    /*{id : uuidv4(),
+    description : 'Learn HTML',
     isDone : false},
     {id : uuidv4(),
-    description : 'Learn react hooks',
+    description : 'Learn CSS',
     isDone : false},
     {id : uuidv4(),
-    description : 'Learn redux',
-    isDone : false}
+    description : 'Learn React',
+    isDone : false}*/
 ];
 
 const addTodoReducer = (state = initialState ,action) => {
@@ -37,17 +37,12 @@ const addTodoReducer = (state = initialState ,action) => {
             return newTodos;
         case 'COMPLETE_TODO':
             return state.map(task => task.id === action.payload? {...task, isDone: !task.isDone}: task);
-        case 'FILTER_DONE' :
-            return state.filter(task => task.isDone === true);
-        case 'FILTER_ALL' :
-            return state;
-        case 'FILTER_UNDONE' :
-            return state.filter(task => task.isDone === false);
         default :
             return state;
     }
 }
 
+
 export const rootReducer = combineReducers({
-    todoList : addTodoReducer
+    todoList : addTodoReducer,
 })
