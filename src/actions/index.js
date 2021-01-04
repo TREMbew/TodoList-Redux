@@ -9,10 +9,10 @@ export const addToDo = (addTodo) => {
     };
 };
 
-export const editToDo = (editTodo) => {
+export const editToDo = (editTodo, id) => {
     return {
         type : 'EDIT_TODO',
-        payload : {id : uuidv4(),
+        payload : {id : id,
                 description : editTodo,
                 isDone : false}
     };

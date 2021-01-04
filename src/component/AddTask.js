@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {addToDo} from '../actions';
 import { SiAddthis } from 'react-icons/si';
 
-const AddTask = (props) => {
+const AddTask = ({addToDo}) => {
     const [addTask, setAddTask] = useState('');
     return (
         <form onSubmit={(e) => e.preventDefault()}>
@@ -19,7 +19,7 @@ const AddTask = (props) => {
             type="submit"
             onClick={() => {
                 if(addTask.length !== 0)
-                props.addToDo(addTask)
+                addToDo(addTask)
                 setAddTask('')}
             }>
                 <SiAddthis />

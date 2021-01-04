@@ -1,17 +1,6 @@
 import { combineReducers } from 'redux';
-//import { v4 as uuidv4 } from 'uuid';
 
-let initialState = [
-    /*{id : uuidv4(),
-    description : 'Learn HTML',
-    isDone : false},
-    {id : uuidv4(),
-    description : 'Learn CSS',
-    isDone : false},
-    {id : uuidv4(),
-    description : 'Learn React',
-    isDone : false}*/
-];
+let initialState = [];
 
 const addTodoReducer = (state = initialState ,action) => {
     switch(action.type){

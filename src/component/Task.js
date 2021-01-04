@@ -3,10 +3,11 @@ import {editToDo, completeToDo, deleteToDo} from '../actions';
 import {connect} from 'react-redux';
 import {FaTrashAlt, FaCheckSquare, FaEdit} from 'react-icons/fa'
 
-const Task = (props) => {
+const Task = ({task,editToDo, completeToDo, deleteToDo}) => {
+    console.log(task)
     const [editable, seteditable] = useState(false);
-    const [done, setdone] = useState(props.task.isDone)
-    const [name, setName] = useState(props.task.description);
+    const [done, setdone] = useState(task.isDone)
+    const [name, setName] = useState(task.description);
     return (
         <div className={"todo " + (done ? 'completedItem' : '')}>
             {editable ? 
@@ -20,27 +21,26 @@ const Task = (props) => {
             <button
                 className='complete_btn'
                 onClick={() => {
-                    props.completeToDo(props.task.id);
+                    completeToDo(task.id);
                     setdone(!done);
             }}>
                 <FaCheckSquare className='faCheck'/>
             </button>
             
-            <button
+            {done? (null) 
+            : 
+            (<button
                 className='edit_btn'
                 onClick={() => {
-                    props.editToDo(props.task.description);
-                if (editable) {
-                    setName(name);
-            }
-                seteditable(!editable);
+                    editToDo(task.description, task.id);
+                    seteditable(!editable);
             }}>
                 <FaEdit className='faEdit'/> 
-            </button>
+            </button>)}
             
             <button
                 className='delete_btn'
-                onClick={() => props.deleteToDo(props.task.id)}
+                onClick={() => deleteToDo(task.id)}
             >
                 <FaTrashAlt className='faTrash'/>
             </button>
@@ -48,8 +48,4 @@ const Task = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return { todoList : state.todoList}
-}
-
-export default connect(mapStateToProps, {editToDo, completeToDo, deleteToDo})(Task)
+export default connect(null, {editToDo, completeToDo, deleteToDo})(Task)
