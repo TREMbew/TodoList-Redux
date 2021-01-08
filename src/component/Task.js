@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {FaTrashAlt, FaCheckSquare, FaEdit} from 'react-icons/fa'
 
 const Task = ({task,editToDo, completeToDo, deleteToDo}) => {
-    console.log(task)
     const [editable, seteditable] = useState(false);
     const [done, setdone] = useState(task.isDone)
     const [name, setName] = useState(task.description);
@@ -37,7 +36,7 @@ const Task = ({task,editToDo, completeToDo, deleteToDo}) => {
             }}>
                 <FaEdit className='faEdit'/> 
             </button>)}
-            
+
             <button
                 className='delete_btn'
                 onClick={() => deleteToDo(task.id)}

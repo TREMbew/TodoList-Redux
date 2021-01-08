@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {addToDo} from '../actions';
+import {addToDo, filterToDo} from '../actions';
 import { SiAddthis } from 'react-icons/si';
+import {useDispatch} from 'react-redux';
 
 const AddTask = ({addToDo}) => {
     const [addTask, setAddTask] = useState('');
+    const dispatch = useDispatch()
+    const filterHandler = (e) => {
+        console.log(e.target.value);
+        dispatch(filterToDo(e.target.value))
+    }
     return (
         <form onSubmit={(e) => e.preventDefault()}>
             <input
@@ -25,7 +31,7 @@ const AddTask = ({addToDo}) => {
                 <SiAddthis />
             </button>
             <div className="select">
-                <select name="todos" className="filter_todo">
+                <select name="todos" className="filter_todo" onChange={filterHandler}>
                     <option value="all">All</option>
                     <option value="completed">Completed</option>
                     <option value="active">Active</option>

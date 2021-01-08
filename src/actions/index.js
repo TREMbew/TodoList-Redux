@@ -31,3 +31,10 @@ export const deleteToDo = (id) => {
         payload: id,
     };
 };
+
+export const filterToDo = (filterValue) => {
+    return {
+        type: 'FILTER_TODO',
+        payload: filterValue,
+    };
+};

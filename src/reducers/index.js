@@ -2,30 +2,32 @@ import { combineReducers } from 'redux';
 
 let initialState = [];
 
-const addTodoReducer = (state = initialState ,action) => {
+const addTodoReducer = (state = {filterTodo : 'all' , initialState} ,action) => {
     switch(action.type){
         case 'ADD_TODO' :
-            return [...state, action.payload];
+            return {...state, initialState : [...state.initialState, action.payload]}
         case 'EDIT_TODO' :
-            let newTodo = state;
-            let index = -1;
-            for (let i = 0; i < newTodo.length; i++) {
-                index++;
-                if (newTodo[i].id === action.payload.id) {
-                break;
-                }
-            }
-            if (index !== -1) {
-                newTodo[index] = action.payload;
-                return newTodo;
-            }
-            break;
+            return{
+                ...state,
+                initialState : state.initialState.map(task => task.id === action.payload.id? 
+                    {...task, description: action.payload.description} : task)
+            }    
         case 'DELETE_TODO':
-            let newTodos = [...state];
-            newTodos = newTodos.filter((task) => task.id !== action.payload);
-            return newTodos;
+            return {
+                ...state,
+                initialState: state.initialState.filter((task) => task.id !== action.payload)
+            }
         case 'COMPLETE_TODO':
-            return state.map(task => task.id === action.payload? {...task, isDone: !task.isDone}: task);
+            return {
+                ...state,
+                initialState : state.initialState.map(task => task.id === action.payload? 
+                    {...task, isDone: !task.isDone}: task)
+            }
+        case 'FILTER_TODO' :
+            return {
+                ...state,
+                filterTodo : action.payload
+            }
         default :
             return state;
     }
